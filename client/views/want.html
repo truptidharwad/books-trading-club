@@ -1,0 +1,24 @@
+<div layout="column" class="bodycontent">
+  <div layout="column" layout-margin class="grid">
+    <h2>Books You Want</h2>
+    <p>These are the books you are hoping to add to your collection. Users who own these titles will be notified and may choose to fulfill your wish (in other words, they might give you the book).</p>
+    <p ng-show="wishlist.length === 0" class="primary center">
+      You haven't told us which books you want. Visit <a href="/books">Everyone's Books</a> and select some.
+    </p>
+    <div class="grid" ng-show="wishlist">
+      <md-grid-list md-cols="2"  md-cols-sm="3" md-cols-md="4" md-cols-lg="6" md-cols-xl="7" md-gutter="1em" md-row-height="270px" flex>
+        <md-grid-tile ng-repeat="book in wishlist" md-colspan="1" md-rowspan="1" flex flex-md="20" flex-lg="17" flex="14">
+          <div class="cover" md-whiteframe layout="column" layout-align="center center" id="{{ book.id }}">
+            <h2 ng-hide="book.thumbnail">{{ book.title }}</h2>
+            <md-tooltip md-direction="top" ng-show="book.thumbnail">{{ book.title }}</md-tooltip>
+            <img src="{{ book.thumbnail }}" ng-show="book.thumbnail" alt="{{ book.title }}">
+            <md-button class="removeItem" layout="row" layout-align="center center" ng-click="profile.removeFromWishlist(book)">
+              <md-icon>delete_forever</md-icon>
+              <span>Remove</span>
+            </md-button>
+          </div>
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+  </div>
+</div>

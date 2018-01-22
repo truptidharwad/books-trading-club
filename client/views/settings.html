@@ -1,0 +1,39 @@
+<div layout="column" class="bodycontent">
+  <div layout="column" layout-align="top center" layout-fill>
+    <md-form>
+      <md-content class="md-padding stretch" layout="column">
+        <h2>Update Settings</h2>
+        <md-input-container>
+          <label for="firstname">First Name</label>
+          <input type="text" id="firstname" ng-model="settings.user.firstname">
+        </md-input-container>
+        <md-input-container>
+          <label for="lastname">Last Name</label>
+          <input type="text" id="lastname" ng-model="settings.user.lastname">
+        </md-input-container>
+        <md-input-container>
+          <label for="city">City</label>
+          <input type="text" id="city" ng-model="settings.user.city">
+        </md-input-container>
+        <md-input-container>
+          <label>State</label>
+          <md-select ng-model="settings.user.state">
+            <md-option ng-repeat="state in settings.states" value="{{state.abbrev}}">
+              {{state.abbrev}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+        <div layout="row" layout-align="center center" style="padding-top:20px;">
+          <md-button role="submit" type="submit" layout-padding href="/profile" ng-click="settings.setProfile(settings.user)" class="md-raised md-primary">
+            Update Settings
+          </md-button>
+          <div flex></div>
+            <md-button href=""  md-no-ink>
+              Cancel
+            </md-button>
+          </div>
+        </div>
+      </md-content>
+    </md-form>
+  </div>
+</div>

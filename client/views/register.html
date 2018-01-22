@@ -1,0 +1,55 @@
+<div layout="column" class="bodycontent">
+  <div layout="column" layout-align="top center" class="register-form" layout-fill>
+    <md-form ng-submit="register.onSubmit()" class="stretch" >
+        <md-content class="md-padding stretch" layout="column" class="stretch" >
+        <h2>Register</h2>
+        <md-input-container class="stretch">
+          <label for="email">Email Address*</label>
+          <input class="stretch" type="email" ng-model="register.credentials.email">
+        </md-input-container>
+        <md-input-container class="stretch">
+          <label for="username">Username*</label>
+          <input type="text" class="stretch"  id="username" ng-model="register.credentials.username">
+        </md-input-container>
+        <md-input-container class="stretch" id="password">
+          <label for="password">Password*</label>
+          <input type="password" class="stretch"  ng-model="register.credentials.password">
+        </md-input-container>
+        <md-input-container class="stretch">
+          <label for="firstname">First Name</label>
+          <input type="text" class="stretch"  id="firstname" ng-model="register.credentials.firstname">
+        </md-input-container>
+        <md-input-container class="stretch">
+          <label for="lastname">Last Name</label>
+          <input type="text" id="lastname" class="stretch"  ng-model="register.credentials.lastname">
+        </md-input-container>
+        <md-input-container class="stretch">
+          <label for="city">City</label>
+          <input type="text" id="city" class="stretch"  ng-model="register.credentials.city">
+        </md-input-container>
+        <md-input-container class="stretch">
+          <label for="state">State or Province</label>
+          <input type="text" class="stretch"  id="State" ng-model="register.credentials.state">
+        </md-input-container>
+        <div layout="row" layout-align="center center" style="padding-top:20px;">
+          <md-button role="submit" type="submit" ng-click="register.onSubmit()" class="md-raised md-primary" id="submit">
+            Register
+          </md-button>
+          <div flex></div>
+            <md-button href="/home"  md-no-ink>
+              Cancel
+            </md-button>
+          </div>
+        </div>
+      </md-content>
+    </md-form>
+  </div>
+</div>
+<script>
+  $('md-form').on("keypress", function(e) {
+    var code = e.keyCode || e.which;
+    if(code == 13) { //Enter keycode
+      $('#submit').trigger('click');
+    }
+  });
+</script>

@@ -1,0 +1,188 @@
+<div layout="column" class="bodycontent">
+  <div layout="column" layout-margin class="grid">
+    <h2>Trades</h2>
+    <div layout="row" layout-wrap>
+      <md-card flex="auto">
+        <md-toolbar class="md-hue-1" Layout-align="end start" layout-padding>
+          <md-cart-title layout="column">
+            <md-card-title-text>
+              <span class="md-headline">Pending</span>
+            </md-card-title-text>
+          </md-card-title>
+        </md-toolbar>
+        <md-card-content layout="column">
+          <p class="center" ng-hide="pending.length > 0">
+            You have no pending trades, which means no one has indicated they want the books you've posted so far. Try adding some more books to your collection.
+          </p>
+          <p ng-show="pending.length > 0">
+            There are users interested in these books in your collection:
+          </p>
+          <table id="pending-trades" ng-show="pending.length > 0" class="big-table">
+            <thead>
+              <tr>
+                <td></td>
+                <td>Location</td>
+                <td></td>
+                <td>Title</td>
+                <td>Initiate</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="trade in pending">
+                <td><span class="table-label">A user in </span></td>
+                <td><span ng-show="trade.user.city">{{ trade.user.city }}, {{ trade.user.state }}</span><span ng-hide="trade.user.city">an undisclosed location</span></td>
+                <td><span class="table-label"> wants </span></td>
+                <td>{{ trade.book.title }}</td>
+                <td id="{{ trade._id }}">
+                  <md-button ng-hide="trade.status === approved" class="md-raised" ng-click="approveTrade(trade)">Initiate Trade</md-button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="little-table" ng-show="pending.length > 0">
+            <tr ng-repeat="trade in pending">
+              <td layout="column" layout-align="center center">
+                <span class="title">{{ trade.book.title }}</span>
+                <span class="city" ng-show="trade.user.city">{{ trade.user.city }}, {{ trade.user.state }}</span><span class="city" ng-hide="trade.user.city">an undisclosed location</span>
+                <md-button ng-click="approveTrade(trade)" class="md-raised md-accent">Initiate Trade</md-button>
+              </td>
+            </tr>
+          </table>
+        </md-card-content>
+      </md-card>
+      <md-card flex="auto">
+        <md-toolbar class="md-hue-2" Layout-align="end start" layout-padding>
+          <md-cart-title layout="column">
+            <md-card-title-text>
+              <span class="md-headline">In Progress - Donor</span>
+            </md-card-title-text>
+          </md-card-title>
+        </md-toolbar>
+        <md-card-content layout="column">
+          <p class="center" ng-hide="inProgressDonor.length > 0">
+            You are not the donor on any in-progress trades. Click "Initiate Trade" next to one of your pending trades to have it added to this list.
+          </p>
+          <p ng-show="inProgressDonor.length > 0">You have agreed to give away the following books:</p>
+          <table id="in-progress-donor" ng-show="inProgressDonor.length > 0" class="big-table">
+            <thead>
+              <tr>
+                <td></td>
+                <td>Title</td>
+                <td></td>
+                <td>Trading With</td>
+                <td></td>
+                <td>From</td>
+                <td>Action</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="trade in inProgressDonor track by $index">
+                <td><span class="table-label">You are giving</span></td>
+                <td>{{ trade.book.title }}</td>
+                <td><span class="table-label">to</span></td>
+                <td><span ng-show="trade.recipient.firstname">{{ trade.recipient.firstname }} {{ trade.recipient.lastname }}</span><span ng-hide="trade.recipient.firstname">{{ trade.recipient.username }}</span></td>
+                <td><span class="table-label">in</span></td>
+                <td><span ng-show="trade.recipient.city">{{ trade.recipient.city }}, {{ trade.recipient.state }}</span><span ng-hide="trade.recipient.city">an undisclosed location</span></td>
+                <td><md-button href="mailto:{{ trade.recipient.email }}" class="md-primary md-raised">
+                  Email
+                  <md-tooltip md-direction="bottom">{{ trade.recipient.email }}</md-tooltip>
+                </md-button></td>
+                <td id="{{ trade._id }}"><md-button class="md-warn" ng-click="cancelTrade(trade)">Cancel Trade</md-button></td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="little-table" ng-show="inProgressDonor.length > 0">
+            <tr ng-repeat="trade in inProgressDonor track by $index">
+              <td layout="column" layout-align="center center">
+                <span class="title">{{ trade.book.title }}</span>
+                <span ng-show="trade.recipient.firstname">{{ trade.recipient.firstname }} {{ trade.recipient.lastname }}</span><span ng-hide="trade.recipient.firstname">{{ trade.recipient.username }}</span>
+                <div layout="row" layout-align="center center">
+                  <md-button href="mailto:{{ trade.recipient.email }}" class="md-raised md-primary">
+                    email
+                    <md-tooltip md-direction="bottom">{{ trade.recipient.email }}</md-tooltip>
+                  </md-button>
+                  <md-button ng-click="cancelTrade(trade)" class="md-warn">Cancel</md-button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </md-card-content>
+      </md-card>
+        </md-card-content>
+      </md-card>
+      <md-card flex="auto">
+        <md-toolbar class="md-hue-3" Layout-align="end start" layout-padding>
+          <md-cart-title layout="column">
+            <md-card-title-text>
+              <span class="md-headline">In Progress - Recipient</span>
+            </md-card-title-text>
+          </md-card-title>
+        </md-toolbar>
+        <md-card-content layout="column">
+          <p class="center" ng-hide="inProgressRecipient.length > 0">
+            You have no in progress trades as recipient. Try adding some more books to your "I Want This" list.
+          </p>
+          <p ng-show="inProgressRecipient.length > 0">Other users have agreed to give you the following books:</p>
+          <table id="in-progress-recipient" ng-show="inProgressRecipient.length > 0" class="big-table">
+            <thead>
+              <tr>
+                <td></td>
+                <td>Title</td>
+                <td></td>
+                <td>Trading With</td>
+                <td></td>
+                <td>From</td>
+                <td>Action</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="trade in inProgressRecipient track by $index">
+                <td><span class="table-label">You are receiving</span></td>
+                <td>{{ trade.book.title }}</td>
+                <td><span class="table-label">from</span></td>
+                <td><span ng-show="trade.donor.firstname">{{ trade.donor.firstname }} {{ trade.donor.lastname }}</span><span ng-hide="trade.donor.firstname">{{ trade.donor.username }}</span></td>
+                <td><span class="table-label">in</span></td>
+                <td><span ng-show="trade.donor.city">{{ trade.donor.city }}, {{ trade.donor.state }}</span><span ng-hide="trade.donor.city">an undisclosed location</span></td>
+                <td><md-button href="mailto:{{ trade.donor.email }}" class="md-accent">
+                  Email
+                  <md-tooltip md-direction="bottom">{{ trade.recipient.email }}</md-tooltip>
+                </md-button></td>
+
+                <td id="{{ trade._id }}"><md-button class="md-raised md-primary" ng-click="completeTrade(trade)">Complete Trade</md-button></td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="little-table" ng-show="inProgressRecipient.length > 0">
+            <tr ng-repeat="trade in inProgressRecipient track by $index">
+              <td layout="column" layout-align="center center">
+                <span class="title">{{ trade.book.title }}</span>
+                <span ng-show="trade.donor.firstname">{{ trade.donor.firstname }} {{ trade.donor.lastname }}</span><span ng-hide="trade.donor.firstname">{{ trade.donor.username }}</span>
+                <div layout="row" layout-align="center center">
+                  <md-button href="mailto:{{ trade.donor.email }}" class="md-accent">
+                    email
+                    <md-tooltip md-direction="bottom">{{ trade.donor.email }}</md-tooltip>
+                  </md-button>
+                  <md-button ng-click="completeTrade(trade)" class="md-primary md-raised">Complete</md-button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </md-card-content>
+      </md-card>
+      <md-card flex="auto">
+        <md-toolbar class="md-hue-3" Layout-align="end start" layout-padding>
+          <md-cart-title layout="column">
+            <md-card-title-text>
+              <span class="md-headline">How Trading Works</span>
+            </md-card-title-text>
+          </md-card-title>
+        </md-toolbar>
+        <md-card-content layout="column">
+          <ol><li>Pending trades will appear when a user requests a book you own.</li><li>Click on Initiate Trade if you wish to move forward with a request in your Pending list.</li><li>Once initiated, both users will be provided with each other's contact info to arrange the trade.</li><li>The book's owner can cancel the trade, which returns the book to their collection, and to the other's Books I Want list.</li><li>Click the 'Trade Complete' button once you receive a book, to close off the trade.</li></ol>
+        </md-card-content>
+      </md-card>
+    </div>
+  </div>
+</div>

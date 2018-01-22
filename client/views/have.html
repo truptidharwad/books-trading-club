@@ -1,0 +1,22 @@
+<div layout="column" class="bodycontent">
+  <div layout="column" class="grid">
+    <h2>Books You Have</h2 flex="auto">
+    <p ng-show="profile.collection.length >= 5" flex="auto">These are the books in your collection right now. You can always <a href="/search">add more</a>. Anything you trade will be added/removed automatically.</p>
+    <p ng-hide="profile.collection.length > 5" flex="auto">Not much in your collection yet? You should <a href="/search">add something!</a></p>
+    <div class="grid" ng-show="profile.collection" flex="grow">
+      <md-grid-list md-cols="2"  md-cols-sm="3" md-cols-md="4" md-cols-lg="6" md-cols-xl="7" md-gutter="1em" md-row-height="270px" flex>
+        <md-grid-tile ng-repeat="book in profile.collection" md-colspan="1" md-rowspan="1" flex flex-md="20" flex-lg="17" flex="14">
+          <div class="cover" md-whiteframe layout="column" layout-align="center center" id="{{ book.id }}">
+            <h2 ng-hide="book.thumbnail">{{ book.title }}</h2>
+            <md-tooltip md-direction="top" ng-show="book.thumbnail">{{ book.title }}</md-tooltip>
+            <img src="{{ book.thumbnail }}" ng-show="book.thumbnail" alt="book.title">
+            <md-button class="removeItem" layout="row" layout-align="center center" ng-click="profile.removeFromCollection(book)">
+              <md-icon>delete_forever</md-icon>
+              <span>Remove</span>
+            </md-button>
+          </div>
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+  </div>
+</div>

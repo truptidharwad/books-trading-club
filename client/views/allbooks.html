@@ -1,0 +1,27 @@
+<div layout="column" class="bodycontent" flex>
+
+  <div class="grid" layout="column" flex>
+    <h3>All Books</h3>
+    <md-grid-list md-cols="2"  md-cols-sm="3" md-cols-md="4" md-cols-lg="6" md-cols-xl="7" md-gutter="1em" md-row-height="270px" flex>
+      <md-grid-tile ng-repeat="book in books" md-colspan="1" md-rowspan="1" flex flex-md="20" flex-lg="17" flex="14">
+        <div class="cover" md-whiteframe layout="column" layout-align="center center">
+          <h2 ng-hide="book.thumbnail">{{ book.title }}</h2>
+          <md-tooltip md-direction="top" ng-show="book.thumbnail">{{ book.title }}</md-tooltip>
+          <img src="{{ book.thumbnail }}" ng-show="book.thumbnail" alt="{{ book.title }}">
+          <md-button ng-show="allbooks.wishListEligible(book)" class="borrow" layout="row" layout-align="center center" ng-click="allbooks.addToWishlist(book)">
+            <md-icon>favorite_border</md-icon>
+            <span hide-xs>Want this?</span>
+          </md-button>
+          <md-button ng-show="userCollection.indexOf(book.id) > -1" class="own-it" layout="row" layout-align="center center">
+            <md-icon style="color: green;">library_books</md-icon>
+            <span hide-xs>My Book</span>
+          </md-button>
+          <md-button ng-show="wishlist.indexOf(book.id) > -1" class="wish" layout="row" layout-align="center center" ng-click="allbooks.removeFromWishlist(book)">
+            <md-icon class="md-accent">favorite</md-icon>
+            <span hide-xs>I Want This</span>
+          </md-button>
+        </div>
+      </md-grid-tile>
+    </md-grid-list>
+  </div>
+</div>

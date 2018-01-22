@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <title>Book Trade: A Club for Trading Your Books</title>
+    <base href="/">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc.5/angular-material.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,300,400italic' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
+  </head>
+  <body>
+    <div ng-controller="AppCtrl as appCtrl" layout="column" style="height: 100%;" ng-cloak>
+      <section layout="row" flex>
+        <md-sidenav
+            class="md-sidenav-left"
+            md-component-id="left"
+            md-whiteframe="8">
+          <md-toolbar class="md-theme-indigo md-hue-1">
+            <h1 class="md-toolbar-tools">A Book Trading Club</h1>
+          </md-toolbar>
+          <md-content layout-padding>
+
+            <ul class='sidenavlist'>
+              <li ng-repeat="item in menu"><md-button ng-click="appCtrl.toggleSidenav()" ng-href="{{ item.link }}"><md-icon layout-margin>{{ item.icon }}</md-icon>{{ item.title }}</md-button></li>
+              <li><md-button id="logout" href="/home" ng-click="logout()" ng-hide="!isLoggedIn"><md-icon>power_settings_new</md-icon> Sign Out</md-button></li>
+            </ul>
+          </md-content>
+        </md-sidenav>
+       <md-toolbar class="fixed">
+          <div class="md-toolbar-tools">
+            <md-icon layout-margin ng-click="appCtrl.toggleSidenav()" aria-label="Open Menu" id="menu">menu</md-icon>
+            <h1 layout-margin>A Book Trading Club</h1>
+          </div>
+        </md-toolbar>
+        <md-content flex layout-padding>
+          <div layout="column" flex layout-align="start start" ng-view>
+          </div>
+        </md-content>
+      </section>
+    </div>
+
+
+    <!-- scripts -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-7816763-4', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc.5/angular-material.min.js"></script>
+    <script src="/app/app.module.js"></script>
+    <script src="/app/authentication.service.js"></script>
+    <script src="/app/data.service.js"></script>
+    <script src="/app/app.controller.js"></script>
+    <script src="/app/allbooks.controller.js"></script>
+    <script src="/app/search.controller.js"></script>
+    <script src="/app/register.controller.js"></script>
+    <script src="/app/login.controller.js"></script>
+    <script src="/app/profile.controller.js"></script>
+    <script src="/app/settings.controller.js"></script>
+  </body>
+</html>

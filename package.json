@@ -1,0 +1,43 @@
+{
+  "name": "book-trading-club",
+  "version": "0.1.0",
+  "description": "List your books and find books to trade",
+  "main": "server.js",
+  "repository": "https://github.com/ubershibs/book-trading-club",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --reporter spec"
+  },
+  "author": "Luke Walker <luke.walker@gmail.com> (http://lukewalker.org)",
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-animate": "^1.5.7",
+    "angular-aria": "^1.5.7",
+    "angular-material": "^1.1.0-rc.5",
+    "angular-messages": "^1.5.7",
+    "angular-route": "^1.5.7",
+    "angular-sanitize": "^1.5.7",
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "crypto": "0.0.3",
+    "express": "^4.14.0",
+    "express-jwt": "^3.4.0",
+    "google-books-search": "^0.3.0",
+    "jsonwebtoken": "^7.0.1",
+    "mongoose": "^4.5.3",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "^2.3.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^2.5.3"
+  },
+  "engines": {
+    "node": "4.4.7"
+  }
+}

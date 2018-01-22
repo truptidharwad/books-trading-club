@@ -1,0 +1,41 @@
+<div layout="column" class="bodycontent">
+  <div layout="column" layout-align="start start" flex="auto">
+    <h3 ng-hide="search.results" class="searchhead" flex="auto">Add Books</h3>
+    <div layout="row" layout-align="start center" flex>
+      <md-input-container id="searchbar" flex="auto">
+        <label for="searchterm">Search by title, author or ISBN</label>
+        <input type="search" id="searchterm" ng-model="term" flex="shrink">
+      </md-input-container>
+      <md-button layout="row"  layout-align="start center" ng-click="search.search(term)" class="md-raised md-icon-button" id="search" flex="nogrow">
+        <md-icon>search</md-icon>
+      </md-button>
+      <md-button ng-show="search.results" class="md-accent clearbtn" ng-click="search.results = [];">Clear</md-button>
+    </div>
+  </div>
+  <div layout="column" flex="grow">
+    <div ng-show="search.results" layout="column" layout-fill>
+      <md-grid-list md-cols="2"  md-cols-sm="3" md-cols-md="4" md-cols-lg="6" md-cols-xl="7" md-gutter="1em" md-row-height="270px" flex>
+        <md-grid-tile ng-repeat="book in search.results track by $index" md-colspan="1" md-rowspan="1">
+          <div class="cover" md-whiteframe layout="column" layout-align="center center">
+            <h2 ng-hide="book.thumbnail">{{ book.title }}</h2>
+            <md-tooltip md-direction="top" ng-show="book.thumbnail">{{ book.title }}</md-tooltip>
+            <img src="{{ book.thumbnail }}" ng-show="book.thumbnail" alt="{{ book.title }}">
+            <md-button layout="row" layout-align="center center" ng-click="search.addBook(book)" ng-show="!search.inCollection(book)">
+              <md-icon>check_box</md-icon>
+              <span>Add to My Books</span>
+            </md-button>
+            <p class="own-it" ng-show="search.inCollection(book)">You have this book</p>
+          </div>
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+  </div>
+</div>
+<script>
+  $('#searchterm').on("keypress", function(e) {
+    var code = e.keyCode || e.which;
+    if(code == 13) { //Enter keycode
+      $('#search').trigger('click');
+    }
+  });
+</script>

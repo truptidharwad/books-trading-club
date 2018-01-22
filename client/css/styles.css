@@ -1,0 +1,302 @@
+/* Baseline element styles */
+body{
+  height: 100% !important;
+  width: 100%;
+}
+
+h3, p {
+  margin-top: 10px;
+}
+
+h3, h4 {
+  margin-bottom: 5px;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+a {
+  color: #FF4081;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+table {
+  border: none;
+  border-collapse: collapse;
+  width: auto;
+}
+
+thead {
+  font-size: 12px;
+}
+
+td  {
+  border-bottom: solid 1px #DDDDDD;
+  margin: 0;
+  padding: 5px;
+  width: auto;
+}
+
+tr:hover{
+  background-color: #EEEEEE;
+}
+
+tr>td:first-child {
+  padding-right: 5px;
+}
+
+ol {
+  margin: 0
+}
+
+/* Padding for top menu bar */
+.bodycontent {
+  padding-top: 60px;
+  width: 100%;
+  min-height: 100%;
+}
+
+@media only screen and (min-width: 960px) {
+  .bodycontent {
+    padding-top: 70px;
+  }
+}
+
+/* General classes*/
+.menu {
+  cursor: pointer;
+}
+
+.center {
+  text-align: center;
+}
+
+.grid {
+  width: 100%;
+}
+
+.container {
+  position: relative;
+  display: block;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.no-bullets {
+  list-style-type: none;
+}
+
+.primary {
+  color: #3F51B5;
+}
+/* Top bar classes */
+.fixed {
+  position: fixed;
+  top: 10;
+  left: 10;
+  z-index: 6;
+}
+
+/* Home page/sidenav */
+.homehead {
+  font-size: 60px;
+  margin: 0.3em auto;
+}
+
+.sidenavlist, .featurelist {
+  list-style-type: none;
+}
+
+.featurelist > li {
+  font-size: 20px;
+  margin: 10px auto;
+}
+
+.copyright {
+  margin-top: 50px;
+}
+
+/* Register form */
+.register-form {
+  max-width: 100%;
+  width: 500px;
+  margin: 0 auto;
+}
+
+/* Add Books page */
+.searchhead {
+  position: relative;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.searchsub {
+  position: relative;
+  font-size: 16px;
+}
+
+.clearbtn {
+  margin: 0;
+  width: 50px;
+}
+
+@media only screen and (max-width: 420px) {
+  .clearbtn {
+    display: none;
+  }
+}
+
+#searchterm {
+  width: auto;
+  min-width: 200px;
+}
+
+.cover {
+  padding: 1rem 1rem 0 1rem;
+  background-color: white;
+  height: auto;
+  width: auto;
+  max-height: 300px;
+  max-width: 175px;
+}
+
+.cover img {
+  height: auto;
+  width: auto;
+  max-height: 260px;
+  max-width: 165px;
+}
+
+.want-small {
+  display: none;
+}
+
+.want-large {
+  display: block;
+}
+@media only screen and (max-width: 340px) {
+  .cover {
+    max-width: 145px;
+  }
+
+  .cover img {
+    max-width: 135px;
+  }
+
+  .want-small {
+    display: block;
+  }
+
+  .want-large {
+    display: none;
+  }
+}
+.own-it {
+  -webkit-filter: grayscale(100%);
+     -moz-filter: grayscale(100%);
+       -o-filter: grayscale(100%);
+      -ms-filter: grayscale(100%);
+          filter: grayscale(100%);
+  color: gray;
+}
+
+
+#searchbar {
+  max-width: 70%;
+  width: 800px;
+}
+
+#searchterm {
+  max-width: 100%;
+  width: 800px;
+
+}
+
+/* login page */
+.loginBox {
+  max-width:  90%;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.stretch  {
+  width: 100%;
+}
+
+/* Setting dialog */
+.settings-md-panel {
+  min-height: 500px;
+}
+.settings-dialog {
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2),
+      0 13px 19px 2px rgba(0, 0, 0, 0.14),
+      0 5px 24px 4px rgba(0, 0, 0, 0.12);
+  width: 500px;
+}
+.settings-dialog-content {
+  padding: 0 15px;
+  width: 100%;
+}
+.settings-dialog-content img {
+  height: 300px;
+  margin: auto;
+}
+.settings-dialog-button {
+  width: 100%;
+}
+
+/* Profile & Trades*/
+
+
+.stat {
+  font-size-adjust: 4px;
+  font-weight: 700;
+}
+
+.table-label {
+  font-size: 12px;
+}
+
+.trade-card {
+  min-width: 100px;
+}
+
+.little-table .title {
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.little-table .city {
+  font-style: italic;
+  font-size: 14px;
+}
+
+.big-table {
+  display: none;
+}
+.little-table {
+  display: block;
+}
+
+@media only screen and (min-width: 700px) {
+  .big-table {
+    display: block;
+  }
+
+  .little-table {
+    display: none;
+  }
+}
+
+#instructions {
+  max-width: 640px;
+}

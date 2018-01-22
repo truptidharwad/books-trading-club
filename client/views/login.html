@@ -1,0 +1,41 @@
+<div layout="column" class="bodycontent container" layout-fill layout-align="center center">
+  <div layout="column" layout-align="center center" class="container">
+    <md-form ng-submit="login.onSubmit()" layout="center center" class=>
+      <div class="loginBox md-whiteframe-z3" layout="column">
+        <md-toolbar class="md-accent">
+          <h2 class="md-toolbar-tools">
+            <span>Sign In</span>
+          </h2>
+        </md-toolbar>
+        <md-content class="md-padding" layout="column">
+          <md-input-container>
+            <label for="email">Email Address</label>
+            <input class="stretch" type="email" ng-model="login.credentials.email">
+          </md-input-container>
+          <md-input-container>
+            <label for="password">Password</label>
+            <input class="stretch" type="password" ng-model="login.credentials.password">
+          </md-input-container>
+          <div layout="row" layout-align="center center" style="padding-top:20px;">
+            <md-button role="submit" type="submit" ng-click="login.onSubmit()" class="md-raised md-accent" id="submit">
+              Sign In
+            </md-button>
+            <div flex></div>
+              <md-button href="/register">
+                Register
+              </md-button>
+            </div>
+          </div>
+        </md-content>
+      </div>
+    </md-form>
+  </div>
+</div>
+<script>
+  $('md-form').on("keypress", function(e) {
+    var code = e.keyCode || e.which;
+    if(code == 13) { //Enter keycode
+      $('#submit').trigger('click');
+    }
+  });
+</script>

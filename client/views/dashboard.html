@@ -1,0 +1,91 @@
+<div layout="column" class="bodycontent">
+  <div layout="row" layout-wrap layout-margin>
+    <md-card flex="auto">
+      <md-toolbar class="md-hue-1" Layout-align="end start" layout-padding>
+        <md-cart-title layout="column">
+          <md-card-title-text>
+            <span class="md-headline">Your Account</span>
+          </md-card-title-text>
+        </md-card-title>
+      </md-toolbar>
+      <md-card-content layout="column" layout-align="start center">
+        <table id="user-stats">
+          <tbody>
+            <tr>
+              <td class="stat">{{ profile.collection.length }}</td>
+              <td><a href="/have">Books You Have</a></td>
+              <td><md-button href="/search" class="md-primary">Add</md-button></td>
+            </tr>
+            <tr>
+              <td class="stat">{{ wishlist.length }}</td>
+              <td><a href="/want">Books You Want</a></td>
+              <td><md-button href="/books" class="md-primary">Find</md-button></td>
+            </tr>
+            <tr>
+              <td class="stat">{{ pending.length }}</td>
+              <td><a href="/trades">Trades Pending</a></td>
+              <td><md-button href="/trades" class="md-primary">Initiate</md-button></td>
+            </tr>
+            <tr>
+              <td class="stat">{{ inProgressDonor.length + inProgressRecipient.length }}</td>
+              <td><a href="/trades">Trades In Progress</a></td>
+              <td><md-button href="/trades" class="md-primary">Update</md-button></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h4>Completed trades</h4>
+        <ul class="no-bullets">
+          <li ng-show="profile.tradesgiven">
+            Given: {{ profile.tradesgiven.result.length }}
+          </li>
+          <li ng-hide="profile.tradesgiven">
+            Given: 0
+          </li>
+          <li ng-show="profile.tradesreceived">
+            Received: {{ profile.tradesreceived.result.length }}
+          </li>
+          <li ng-hide="profile.tradesreceived">
+            Received: 0
+          </li>
+        </ul>
+      </md-card-content>
+    </md-card>
+
+    <md-card flex="auto">
+      <md-toolbar class="md-hue-3" Layout-align="end start"layout-padding>
+        <md-cart-title layout="column">
+          <md-card-title-text>
+            <span class="md-headline">Your Details</span>
+          </md-card-title-text>
+        </md-card-title>
+      </md-toolbar>
+      <md-card-content layout="column" layout-align="start center">
+        <p>Email: {{ profile.user.email }}</p>
+        <p ng-show="profile.user.firstname">Name: {{ profile.user.firstname }} {{ profile.user.lastname }}</p>
+        <p ng-show="profile.user.city">Location: {{ profile.user.city}}, {{profile.user.state }}</p>
+        <p ng-hide="profile.user.city">You are more likely to be considered for trades if you add your location <a href="/settings">to your profile</a>.</p>
+      </md-card-content>
+      <md-card-actions layout="column" layout-align="end center">
+        <md-button href="settings"><md-icon>settings</md-icon> Update Settings</md-button>
+      </md-card-actions>
+    </md-card>
+
+    <md-card id="instructions" flex="auto">
+      <md-toolbar class="md-accent" Layout-align="end start" layout-padding>
+        <md-cart-title>
+          <md-card-title-text>
+            <span class="md-headline">How This Works</span>
+          </md-card-title-text>
+        </md-card-title>
+      </md-toolbar>
+      <md-card-content>
+        <p>
+          Add <a href="/search">books you own</a> and are willing to trade through the Google Books search. Then visit <a href="/books">Everyone's Books</a> to find books you would like to add to your collection via trades with members. On the <a href="/trades">Trades page</a>:
+        </p>
+        <ol><li>Pending trades will appear when a user requests a book you own.</li><li>Click on Initiate Trade if you wish to move forward with a request in your Pending list.</li><li>Once initiated, both users will be provided with each other's contact info to arrange the trade.</li><li>The book's owner can cancel the trade, which returns the book to their collection, and to the other's Books I Want list.</li><li>Click the 'Trade Complete' button once you receive a book, to close off the trade.</li></ol>
+        <p>Note: Your details kept private by default. Personal is shared only with users who have the books you have indicated you want. All trades must be arrange via email - this site does not provide any means for users to communicate with one another.</p>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
